@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Mail &#8211; Eternal Center</title>
+	<atom:link href="https://eternalcenter-2021-12.github.io/category/services/other-services/mail/feed/" rel="self" type="application/rss+xml" />
+	<link>https://eternalcenter-2021-12.github.io/</link>
+	<description></description>
+	<lastBuildDate>Sun, 26 Dec 2021 08:51:36 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+	<item>
+		<title>[排错] Linux 解决发送邮件时报错 “send-mail: fatal: parameter inet_interfaces: no local interface found for ::1”</title>
+		<link>https://eternalcenter-2021-12.github.io/mail-debug/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2020 13:06:51 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[Mail]]></category>
+		<category><![CDATA[Other Services (其他服务)]]></category>
+		<category><![CDATA[Services (服务)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=11791</guid>
+
+					<description><![CDATA[报错代码： 解决方法： 步骤一：修改 postfix 的配置文件 将以下内容： 修改为： 步骤二：重启 postfix 服务]]></description>
+										<content:encoded><![CDATA[
+<h2>报错代码：</h2>
+
+
+
+<pre class="wp-block-code"><code>send-mail: fatal: parameter inet_interfaces: no local interface found for ::1</code></pre>
+
+
+
+<h2>解决方法：</h2>
+
+
+
+<h4>步骤一：修改 postfix 的配置文件</h4>
+
+
+
+<pre class="wp-block-code"><code># vim /etc/postfix/main.cf</code></pre>
+
+
+
+<p>将以下内容：</p>
+
+
+
+<pre class="wp-block-code"><code>......
+inet_interfaces = localhost
+......
+inet_protocols = all
+......</code></pre>
+
+
+
+<p>修改为：</p>
+
+
+
+<pre class="wp-block-code"><code>......
+inet_interfaces = all
+......
+inet_protocols = all
+......</code></pre>
+
+
+
+<h4>步骤二：重启 postfix 服务</h4>
+
+
+
+<pre class="wp-block-code"><code># systemctl restart postfix</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[内容] Linux 邮件的发送</title>
+		<link>https://eternalcenter-2021-12.github.io/mail-test/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Wed, 22 Jul 2020 03:02:52 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[Mail]]></category>
+		<category><![CDATA[Other Services (其他服务)]]></category>
+		<category><![CDATA[Services (服务)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=10220</guid>
+
+					<description><![CDATA[]]></description>
+										<content:encoded><![CDATA[
+<pre class="wp-block-code"><code># echo '&lt;content of e-mail>' | mail -s '&lt;email title>' &lt;email address of the other party></code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[内容] Postfix 数据的加密 （通过 TLS 实现）</title>
+		<link>https://eternalcenter-2021-12.github.io/postfix-tls/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Wed, 22 Jul 2020 02:56:38 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[Mail]]></category>
+		<category><![CDATA[Other Services (其他服务)]]></category>
+		<category><![CDATA[Services (服务)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Port Security (系统端口安全)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=10215</guid>
+
+					<description><![CDATA[内容一：Postfix 不使用 TLS 加密数据传输的后果 1) 收发的邮件数据会被他人截取2) 给 Gmail 等电子邮箱发送邮件时，会提示类似 “ *** 未对此邮件进行加密” 的信息 内容二：给 Postfix 设置 TLS 加密数据传输的方法2.1 给 Postfix 的配置文件设置 TLS 机密数据传输的参数 添加以下内容： （补充：smtpd_tls_security_level 代表接收邮件的 TLS 安全等级smtp_tls_security_level 代表发送邮件的 TLS 安全等级TLS 的常用安全等级有 none、may 和 encrypt ：1) none 表示禁止使用 TLS 加密2) may 表示可以接收不使用 TLS 加密的邮件，但是会提出支持 TLS 加密的通告。发送邮件时优先发送支持 TLS 加密的邮件3) encrypt 表示强制使用 TLS 加密） 2.2 重启 Postfix &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/postfix-tls/" class="more-link">Continue reading<span class="screen-reader-text"> "[内容] Postfix 数据的加密 （通过 TLS 实现）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h4>内容一：Postfix 不使用 TLS 加密数据传输的后果</h4>
+
+
+
+<p>1) 收发的邮件数据会被他人截取<br>2) 给 Gmail 等电子邮箱发送邮件时，会提示类似 “ *** 未对此邮件进行加密” 的信息</p>
+
+
+
+<h4>内容二：给 Postfix 设置 TLS 加密数据传输的方法<br>2.1 给 Postfix 的配置文件设置 TLS 机密数据传输的参数</h4>
+
+
+
+<pre class="wp-block-code"><code># vim /etc/postfix/main.cf</code></pre>
+
+
+
+<p>添加以下内容：</p>
+
+
+
+<pre class="wp-block-code"><code>......
+smtpd_tls_security_level = may
+smtp_tls_security_level = may
+......</code></pre>
+
+
+
+<p>（<br>补充：<br>smtpd_tls_security_level 代表接收邮件的 TLS 安全等级<br>smtp_tls_security_level 代表发送邮件的 TLS 安全等级<br>TLS 的常用安全等级有 none、may 和 encrypt ：<br>1) none 表示禁止使用 TLS 加密<br>2) may 表示可以接收不使用 TLS 加密的邮件，但是会提出支持 TLS 加密的通告。发送邮件时优先发送支持 TLS 加密的邮件<br>3) encrypt 表示强制使用 TLS 加密<br>）</p>
+
+
+
+<h4>2.2 重启 Postfix 服务</h4>
+
+
+
+<pre class="wp-block-code"><code># systemctl restart postfix</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

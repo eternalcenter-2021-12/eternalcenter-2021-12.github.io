@@ -1,0 +1,2322 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>System (系统) &#8211; Eternal Center</title>
+	<atom:link href="https://eternalcenter-2021-12.github.io/category/system/feed/" rel="self" type="application/rss+xml" />
+	<link>https://eternalcenter-2021-12.github.io/</link>
+	<description></description>
+	<lastBuildDate>Wed, 29 Dec 2021 14:37:48 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+	<item>
+		<title>[步骤] Linux SSL 证书的生成 （Let&#8217;s Encrypt certbot 版）</title>
+		<link>https://eternalcenter-2021-12.github.io/ssl-lets-encrypt-certbot/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Sun, 19 Dec 2021 15:12:46 +0000</pubDate>
+				<category><![CDATA[Apache]]></category>
+		<category><![CDATA[Basic Guidelines for Website building (网站建设基础指南)]]></category>
+		<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[Django Service (服务)]]></category>
+		<category><![CDATA[Nginx]]></category>
+		<category><![CDATA[Nginx Security (安全)]]></category>
+		<category><![CDATA[Personal Website Building (个人网站建设)]]></category>
+		<category><![CDATA[Project (项目)]]></category>
+		<category><![CDATA[Services (服务)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Port Security (系统端口安全)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<category><![CDATA[Website Services (网站服务)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=19886</guid>
+
+					<description><![CDATA[步骤目录： 步骤一：将要申请 Let&#8217;s Encrypt SSL 的域名解析到要进行操作的服务器 IP 地址上 步骤二：安装 certbot 步骤三：使用 certbot 生成 Let&#8217;s Encrypt SSL 证书 步骤四：查看已经生成的 Let&#8217;s Encrypt SSL 证书 步骤五：延期 Let&#8217;s Encrypt SSL 证书5.1 查看 Let&#8217;s Encrypt SSL 证书的延期策略5.2 手动延期 Let&#8217;s Encrypt SSL 证书5.3 自动延期 Let&#8217;s Encrypt SSL 证书 步骤六：Let’s Encrypt SSL 证书的生成限制 具体的操作步骤： 步骤一：将要申请 Let&#8217;s Encrypt SSL 的域名解析到要进行操作的服务器 IP 地址上 （步骤略） &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/ssl-lets-encrypt-certbot/" class="more-link">Continue reading<span class="screen-reader-text"> "[步骤] Linux SSL 证书的生成 （Let&#8217;s Encrypt certbot 版）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h2>步骤目录：</h2>
+
+
+
+<h4>步骤一：将要申请 Let&#8217;s Encrypt SSL 的域名解析到要进行操作的服务器 IP 地址上</h4>
+
+
+
+<h4>步骤二：安装 certbot</h4>
+
+
+
+<h4>步骤三：使用 certbot 生成 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<h4>步骤四：查看已经生成的 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<h4>步骤五：延期 Let&#8217;s Encrypt SSL 证书<br>5.1 查看 Let&#8217;s Encrypt SSL 证书的延期策略<br>5.2 手动延期 Let&#8217;s Encrypt SSL 证书<br>5.3 自动延期 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<h4>步骤六：Let’s Encrypt SSL 证书的生成限制</h4>
+
+
+
+<h2>具体的操作步骤：</h2>
+
+
+
+<h4>步骤一：将要申请 Let&#8217;s Encrypt SSL 的域名解析到要进行操作的服务器 IP 地址上</h4>
+
+
+
+<p>（步骤略）</p>
+
+
+
+<h4>步骤二：安装 certbot</h4>
+
+
+
+<pre class="wp-block-code"><code># yum -y install certbot</code></pre>
+
+
+
+<p>（补充：这里以在 Fedora 35 上安装 certbot 为例）</p>
+
+
+
+<h4>步骤三：使用 certbot 生成 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<pre class="wp-block-code"><code># certbot certonly --email mingyu.zhu@eternalcenter.com -n --agree-tos --webroot -w /usr/share/nginx/html/ -d eternalcenter.com
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator webroot, Installer None
+Requesting a certificate for eternalcenter.com
+Performing the following challenges:
+http-01 challenge for eternalcenter.com
+Using the webroot path /usr/share/nginx/html for all unmatched domains.
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/eternalcenter.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/eternalcenter.com/privkey.pem
+   Your certificate will expire on 2022-03-20. To obtain a new or
+   tweaked version of this certificate in the future, simply run
+   certbot again. To non-interactively renew *all* of your
+   certificates, run "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le</code></pre>
+
+
+
+<p>（<br>补充：这里以<br>1) 使用 mingyu.zhu@eternalcenter.com 邮箱<br>2) 以非交互式的方式<br>3) 通过给 /usr/share/nginx/html/ 网站目录里添加验证文件进行验证<br>4) 给 eternalcenter.com 域名<br>申请 Let&#8217;s Encrypt SSL 证书为例<br>）</p>
+
+
+
+<h4>步骤四：查看已经生成的 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<pre class="wp-block-code"><code># certbot certificates
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following certs:
+  Certificate Name: eternalcenter.com
+    Serial Number: 3e8cdb74a1abfbf3d535ec1c3f8cb3e4e4c
+    Key Type: RSA
+    Domains: eternalcenter.com
+    Expiry Date: 2022-03-20 13:48:48+00:00 (VALID: 89 days)
+    Certificate Path: /etc/letsencrypt/live/eternalcenter.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/eternalcenter.com/privkey.pem
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</code></pre>
+
+
+
+<p>（<br>补充：<br>1) /etc/letsencrypt/live/eternalcenter.com/fullchain.pem 是公钥<br>2) /etc/letsencrypt/live/eternalcenter.com/privkey.pem 是私钥<br>）</p>
+
+
+
+<h4>步骤五：延期 Let&#8217;s Encrypt SSL 证书<br>5.1 查看 Let&#8217;s Encrypt SSL 证书的延期策略</h4>
+
+
+
+<pre class="wp-block-code"><code># cat /etc/letsencrypt/renewal/eternalcenter.com.conf 
+# renew_before_expiry = 30 days
+version = 1.20.0
+archive_dir = /etc/letsencrypt/archive/eternalcenter.com
+cert = /etc/letsencrypt/live/eternalcenter.com/cert.pem
+privkey = /etc/letsencrypt/live/eternalcenter.com/privkey.pem
+chain = /etc/letsencrypt/live/eternalcenter.com/chain.pem
+fullchain = /etc/letsencrypt/live/eternalcenter.com/fullchain.pem</code></pre>
+
+
+
+<p>（补充：可以看出 Let&#8217;s Encrypt SSL 证书是在过期前 30 天才能更新）</p>
+
+
+
+<h4>5.2 手动延期 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<pre class="wp-block-code"><code># /usr/bin/certbot renew</code></pre>
+
+
+
+<p>（补充：这里以延期 Let&#8217;s Encrypt SSL 证书为例）</p>
+
+
+
+<h4>5.3 自动延期 Let&#8217;s Encrypt SSL 证书</h4>
+
+
+
+<pre class="wp-block-code"><code># crontab -e</code></pre>
+
+
+
+<p>添加以下内容：</p>
+
+
+
+<pre class="wp-block-code"><code>......
+0 0 */30 * * /usr/bin/certbot renew</code></pre>
+
+
+
+<p>（补充：这里以每过 30 天的 0 时 0 分延期 Let&#8217;s Encrypt SSL 证书为例）</p>
+
+
+
+<h4>步骤六：Let’s Encrypt SSL 证书的生成限制</h4>
+
+
+
+<p>1) 一个域名申请次数不能超过 5 次/周<br>2) 允许申请失败次数不能超过 5 次/时<br>3) 属于同一个顶级域名的二级域名申请次数不能超过 20 次/周<br>4) 申请请求频率不能超过 20 次/秒<br>5) 一个 IP 地址创建用户个数不能超过 10 个/3 小时<br>6) 一个用户最多 pending 审核的数不能超过 300 个</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令 ssh （远程登录）</title>
+		<link>https://eternalcenter-2021-12.github.io/ssh/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Fri, 26 Nov 2021 15:56:06 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Login Security (系统登录安全)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=19146</guid>
+
+					<description><![CDATA[案例一：脚本中常用的方式 （补充：这里以1) 安静模式2) 打开新端口的模式3) 不检查服务器记录4) 超时时间为 5 秒5) 通过 eternalcenter 用户6) 登录 eternalcenter.com 服务器为例） 案例二：在操作中常用的方式 （补充：这里以1) 带图形的模式2) 通过 eternalcenter 用户3) 登录 eternalcenter.com 服务器为例）]]></description>
+										<content:encoded><![CDATA[
+<h2>案例一：脚本中常用的方式</h2>
+
+
+
+<pre class="wp-block-code"><code># ssh -q -t -t -o StrictHostKeyChecking=no -o ConnectTimeout=5 -l eternalcenter eternalcenter.com</code></pre>
+
+
+
+<p>（<br>补充：这里以<br>1) 安静模式<br>2) 打开新端口的模式<br>3) 不检查服务器记录<br>4) 超时时间为 5 秒<br>5) 通过 eternalcenter 用户<br>6) 登录 eternalcenter.com 服务器<br>为例<br>）</p>
+
+
+
+<h2>案例二：在操作中常用的方式</h2>
+
+
+
+<pre class="wp-block-code"><code># ssh -X eternalcenter@eternalcenter.com</code></pre>
+
+
+
+<p>（<br>补充：这里以<br>1) 带图形的模式<br>2) 通过 eternalcenter 用户<br>3) 登录 eternalcenter.com 服务器<br>为例<br>）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令 uniq （文件里字符重复的管理）</title>
+		<link>https://eternalcenter-2021-12.github.io/uniq/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Fri, 26 Nov 2021 14:17:52 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=19136</guid>
+
+					<description><![CDATA[案例一：uniq 命令去重 （补充：这里以给 test.txt 文件里的字符为例） 案例二：uniq 只显示重复的行 （补充：这里以只显示 test.txt 文件里重复的行为例） 案例三：uniq 只显示不重复的行 （补充：这里以只显示 test.txt 文件里不重复的行为例） 案例四：显示每个字符出现的次数 （补充：这里以显示 test.txt 每个字符出现的次数为例）]]></description>
+										<content:encoded><![CDATA[
+<h4>案例一：uniq 命令去重</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+a1
+b2
+c3
+a1
+d2
+e3
+a1
+c3
+
+# sort test.txt  | uniq
+a1
+b2
+c3
+d2
+e3</code></pre>
+
+
+
+<p>（补充：这里以给 test.txt 文件里的字符为例）</p>
+
+
+
+<h4>案例二：uniq 只显示重复的行</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+a1
+b2
+c3
+a1
+d2
+e3
+a1
+c3
+
+# sort test.txt  | uniq -d
+a1
+c3</code></pre>
+
+
+
+<p>（补充：这里以只显示 test.txt 文件里重复的行为例）</p>
+
+
+
+<h4>案例三：uniq 只显示不重复的行</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+a1
+b2
+c3
+a1
+d2
+e3
+a1
+c3
+
+# sort test.txt  | uniq -u
+b2
+d2
+e3</code></pre>
+
+
+
+<p>（补充：这里以只显示 test.txt 文件里不重复的行为例）</p>
+
+
+
+<h4>案例四：显示每个字符出现的次数</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+a1
+b2
+c3
+a1
+d2
+e3
+a1
+c3
+
+# sort test.txt  | uniq -c
+      3 a1
+      1 b2
+      2 c3
+      1 d2
+      1 e3</code></pre>
+
+
+
+<p>（补充：这里以显示 test.txt 每个字符出现的次数为例）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[步骤] Linux 加密压缩 （tar 版）</title>
+		<link>https://eternalcenter-2021-12.github.io/encryption-compression-tar/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Mon, 15 Nov 2021 15:52:52 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Directory (系统目录)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System File Security (系统文件安全)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<category><![CDATA[System Storage (系统存储)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18392</guid>
+
+					<description><![CDATA[步骤一：创建测试文件 （补充：这里以创建 test.txt 文件为例） 步骤二：加密压缩文件或目录2.1 交互式加密压缩文件或目录 （补充：1) 这里以将 test.txt 文件加密压缩成 test1.tar.gz （压缩）包为例2) 如果要以 bzip2 的格式进行压缩，则将命令中的 -zcf 换成 -jcvf 将 test1.tar.gz 换成 test1.tar.bz23) 如果要以 xz 的格式进行压缩，则将命令中的 -zcf 换成 -Jcvf 将 test1.tar.gz 换成 test1.tar.xz） 2.2 非交互式加密压缩文件或目录 （补充：1) 这里以将 test.txt 文件加密压缩成 test1.tar.gz （压缩）包并且将密码设置为 eternalcenter 为例2) 如果要以 bzip2 的格式进行压缩，则将命令中的 -zcf 换成 -jcvf 将 test1.tar.gz 换成 test2.tar.bz23) 如果要以 xz 的格式进行压缩，则将命令中的 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/encryption-compression-tar/" class="more-link">Continue reading<span class="screen-reader-text"> "[步骤] Linux 加密压缩 （tar 版）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h4>步骤一：创建测试文件</h4>
+
+
+
+<pre class="wp-block-code"><code># touch test.txt</code></pre>
+
+
+
+<p>（补充：这里以创建 test.txt 文件为例）</p>
+
+
+
+<h4>步骤二：加密压缩文件或目录<br>2.1 交互式加密压缩文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># tar -zcf - test.txt | openssl des3 -salt | dd of=test1.tar.gz
+enter des-ede3-cbc encryption password:
+Verifying - enter des-ede3-cbc encryption password:
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+0+1 records in
+0+1 records out
+224 bytes copied, 7.04902 s, 0.0 kB/s</code></pre>
+
+
+
+<p>（<br>补充：<br>1) 这里以将 test.txt 文件加密压缩成 test1.tar.gz （压缩）包为例<br>2) 如果要以 bzip2 的格式进行压缩，则将命令中的 -zcf 换成 -jcvf 将 test1.tar.gz 换成 test1.tar.bz2<br>3) 如果要以 xz 的格式进行压缩，则将命令中的 -zcf 换成 -Jcvf 将 test1.tar.gz 换成 test1.tar.xz<br>）</p>
+
+
+
+<h4>2.2 非交互式加密压缩文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># tar -zcf - test.txt | openssl des3 -salt -f eternalcenter | dd of=test2.tar.gz
+des3: Unrecognized flag f
+des3: Use -help for summary.
+0+0 records in
+0+0 records out
+0 bytes copied, 0.00376576 s, 0.0 kB/s</code></pre>
+
+
+
+<p>（<br>补充：<br>1) 这里以将 test.txt 文件加密压缩成 test1.tar.gz （压缩）包并且将密码设置为 eternalcenter 为例<br>2) 如果要以 bzip2 的格式进行压缩，则将命令中的 -zcf 换成 -jcvf 将 test1.tar.gz 换成 test2.tar.bz2<br>3) 如果要以 xz 的格式进行压缩，则将命令中的 -zcf 换成 -Jcvf 将 test1.tar.gz 换成 test2.tar.xz<br>）</p>
+
+
+
+<h4>步骤三：解压加密文件或目录<br>3.1 交互式解压加密文件或目录<br>3.1.1 删除原测试目录和里面的文件</h4>
+
+
+
+<pre class="wp-block-code"><code># rm -rf test.txt</code></pre>
+
+
+
+<p>（补充：这里以删除 test.txt 文件为例）</p>
+
+
+
+<h4>3.1.2 交互式解压加密文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># dd if=test2.tar.gz | openssl des3 -d | tar zxf -
+0+1 records in
+0+1 records out
+224 bytes copied, 0.000589721 s, 380 kB/s
+enter des-ede3-cbc decryption password:
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.</code></pre>
+
+
+
+<p>（<br>补充：<br>1) 这里以解压 test2.tar.gz （压缩）包为例<br>2) 如果是 bzip2 格式的（压缩）包，则将命令中的 -zxf 换成 -jcvf 将 test1.tar.gz 换成 test1.tar.bz2<br>3) 如果是 xz 格式的（压缩）包，则将命令中的 -zxf 换成 -Jcvf 将 test1.tar.gz 换成 test1.tar.xz<br>）</p>
+
+
+
+<h4>3.2 非交互式解压加密文件或目录<br>3.2.1 删除原测试目录和里面的文件</h4>
+
+
+
+<pre class="wp-block-code"><code># rm -rf test.txt</code></pre>
+
+
+
+<p>（补充：这里以删除 test.txt 文件为例）</p>
+
+
+
+<h4>3.2.2 非交互式解压加密文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># dd if=test1.tar.gz | openssl des3 -d -k eternalcenter | tar zxf -
+0+1 records in
+0+1 records out
+224 bytes copied, 0.000574539 s, 390 kB/s
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.</code></pre>
+
+
+
+<p>（<br>补充：<br>1) 这里以解压 test1.tar.gz （压缩）包并且解压密码为 eternalcenter 为例<br>2) 如果是 bzip2 格式的（压缩）包，则将命令中的 -zxf 换成 -jcvf 将 test1.tar.gz 换成 test1.tar.bz2<br>3) 如果是 xz 格式的（压缩）包，则将命令中的 -zxf 换成 -Jcvf 将 test1.tar.gz 换成 test1.tar.xz<br>）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[步骤] Linux 加密压缩 （zip 版）</title>
+		<link>https://eternalcenter-2021-12.github.io/encryption-compression-zip/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Mon, 15 Nov 2021 15:48:09 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Directory (系统目录)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System File Security (系统文件安全)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<category><![CDATA[System Storage (系统存储)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18388</guid>
+
+					<description><![CDATA[步骤一：创建测试目录和测试文件 （补充：这里以创建 test 目录和里面的 test.txt 文件为例） 步骤二：加密压缩文件或目录2.1 交互式加密压缩文件或目录 （补充：这里以将 test 目录和里面的 test.txt 文件加密压缩成 test1.zip （压缩）包为例） 2.2 非交互式加密解压文件或目录 （补充：这里以将 test 目录和里面的 test.txt 文件加密压缩成 test2.zip （压缩）包并且将密码设置为 eternalcenter 为例） 步骤三：解压加密文件或目录3.1 交互式解压加密文件或目录3.1.1 删除原测试目录和里面的文件 （补充：这里以删除 test 目录和里面的文件为例） 3.1.2 交互式解压加密文件或目录 （补充：这里以解压 test2.zip （压缩）包为例） 3.2 非交互式解压加密文件或目录3.2.1 删除原测试目录和里面的文件 （补充：这里以删除 test 目录和里面的文件为例） 3.2.2 非交互式解压加密文件 （补充：这里以解压 test2.zip （压缩）包并且解压密码为 eternalcenter 为例）]]></description>
+										<content:encoded><![CDATA[
+<h4>步骤一：创建测试目录和测试文件</h4>
+
+
+
+<pre class="wp-block-code"><code># mkdir test
+# touch test/test.txt</code></pre>
+
+
+
+<p>（补充：这里以创建 test 目录和里面的 test.txt 文件为例）</p>
+
+
+
+<h4>步骤二：加密压缩文件或目录<br>2.1 交互式加密压缩文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># zip -re test1.zip test
+Enter password: 
+Verify password: 
+  adding: test/ (stored 0%)
+  adding: test/test.txt (stored 0%)</code></pre>
+
+
+
+<p>（补充：这里以将 test 目录和里面的 test.txt 文件加密压缩成 test1.zip （压缩）包为例）</p>
+
+
+
+<h4>2.2 非交互式加密解压文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># zip -rP eternalcenter test2.zip test
+  adding: test/ (stored 0%)
+  adding: test/test.txt (stored 0%)</code></pre>
+
+
+
+<p>（补充：这里以将 test 目录和里面的 test.txt 文件加密压缩成 test2.zip （压缩）包并且将密码设置为 eternalcenter 为例）</p>
+
+
+
+<h4>步骤三：解压加密文件或目录<br>3.1 交互式解压加密文件或目录<br>3.1.1 删除原测试目录和里面的文件</h4>
+
+
+
+<pre class="wp-block-code"><code># rm -rf test</code></pre>
+
+
+
+<p>（补充：这里以删除 test 目录和里面的文件为例）</p>
+
+
+
+<h4>3.1.2 交互式解压加密文件或目录</h4>
+
+
+
+<pre class="wp-block-code"><code># unzip test2.zip
+Archive:  test2.zip
+   creating: test/
+&#91;test2.zip] test/test.txt password: 
+ extracting: test/test.txt</code></pre>
+
+
+
+<p>（补充：这里以解压 test2.zip （压缩）包为例）</p>
+
+
+
+<h4>3.2 非交互式解压加密文件或目录<br>3.2.1 删除原测试目录和里面的文件</h4>
+
+
+
+<pre class="wp-block-code"><code># rm -rf test</code></pre>
+
+
+
+<p>（补充：这里以删除 test 目录和里面的文件为例）</p>
+
+
+
+<h4>3.2.2 非交互式解压加密文件</h4>
+
+
+
+<pre class="wp-block-code"><code># unzip -P eternalcenter test1.zip 
+Archive:  test1.zip
+   creating: test/
+ extracting: test/test.txt  </code></pre>
+
+
+
+<p>（补充：这里以解压 test2.zip （压缩）包并且解压密码为 eternalcenter 为例）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令 ping （检测网络联通性）</title>
+		<link>https://eternalcenter-2021-12.github.io/ping/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Thu, 11 Nov 2021 11:18:11 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Network (系统网络)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18283</guid>
+
+					<description><![CDATA[内容一：ping 命令选项 1) -c 设置 ping 的次数2) -i 设置间隔时间，建议值为 0.43) -I 指定去 ping 的硬件设备或者 IP 地址4) -m 设置标记5) -l 设置发送恒多不等待回复的数据包6) -q 不显示输出7) -t 设置 ping 包的生存时间（TLL）8) -v 输出详细信息9) -w 设置 deadline，建议值为 0.8 内容二：ping 命令案例2.1 案例一：让本服务器的某一个 IP 地址 ping 目标 IP 地址 2.2 案例二：让本服务器的某一个网卡 ping 目标 IP 地址 2.3 案例三：快速检测网络联通行]]></description>
+										<content:encoded><![CDATA[
+<h4>内容一：ping 命令选项</h4>
+
+
+
+<p>1) -c 设置 ping 的次数<br>2) -i 设置间隔时间，建议值为 0.4<br>3) -I 指定去 ping 的硬件设备或者 IP 地址<br>4) -m 设置标记<br>5) -l 设置发送恒多不等待回复的数据包<br>6) -q 不显示输出<br>7) -t 设置 ping 包的生存时间（TLL）<br>8) -v 输出详细信息<br>9) -w 设置 deadline，建议值为 0.8</p>
+
+
+
+<h4>内容二：ping 命令案例<br>2.1 案例一：让本服务器的某一个 IP 地址 ping 目标 IP 地址</h4>
+
+
+
+<pre class="wp-block-code"><code># ping -I &lt;IP address of this server&gt; &lt;target IP address&gt;</code></pre>
+
+
+
+<h4>2.2  案例二：让本服务器的某一个网卡 ping 目标 IP 地址 </h4>
+
+
+
+<pre class="wp-block-code"><code>
+# ping -I &lt;IP address of local server&gt; &lt;target IP address&gt;</code></pre>
+
+
+
+<h4>2.3 案例三：快速检测网络联通行</h4>
+
+
+
+<pre class="wp-block-code"><code># ping -c 3 -i 0.4 -w 0.8 &lt;target IP address&gt;</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[内容] Linux 关机或重启记录的查看</title>
+		<link>https://eternalcenter-2021-12.github.io/viewing-of-shutdown-or-restart-records/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Wed, 10 Nov 2021 13:09:21 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System General Log (系统普通日志)]]></category>
+		<category><![CDATA[System Log (系统日志)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18281</guid>
+
+					<description><![CDATA[]]></description>
+										<content:encoded><![CDATA[
+<pre class="wp-block-code"><code># /usr/bin/last -xF | egrep "reboot|shutdown|runlevel|system"</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令  set （设置 Shell 里的位置变量或者 Shell 的执行方式）</title>
+		<link>https://eternalcenter-2021-12.github.io/set/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Wed, 10 Nov 2021 13:05:41 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[Languages (语言)]]></category>
+		<category><![CDATA[Shell]]></category>
+		<category><![CDATA[Shell Basic (基础)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Setting (系统设置)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18278</guid>
+
+					<description><![CDATA[内容一：set 命令的格式1.1 设置 Shell 的位置变量的格式 1.2 设置 Shell 的执行方式 或者： 或者： （补充：+o 代表打开特殊属性，-o 代表结束特殊属性） 内容二： set 的常用参数 1) -a 将已修改的变量进行标记，为将其输出至环境变量做准备2) -b 让被中止的后台进程立刻显示退出状态代码3) -d 取消使用杂凑表记忆中使用过的指令4) -e 若退出状态代码不为 0 （正常退出）则立即退出，并显示错误原因5) -f 取消通配符6) -h 默认自动记录函数位置7) -k 让命令的参数为此命令的环境变量8) -l 默认自动记录 for 循环变量名9) -m 监视模式10) -n 测试模式（只读取不执行）11) -p 优先顺序模式12) -P 让文件或目录代替符号链接13) -t 让随后的命令执行后立即退出14) -u 使用未定义的变量时显示错误信息15) -v 显示输入值16) -H shell 使用感叹号 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/set/" class="more-link">Continue reading<span class="screen-reader-text"> "[命令] Linux 命令  set （设置 Shell 里的位置变量或者 Shell 的执行方式）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h4>内容一：set 命令的格式<br>1.1 设置 Shell 的位置变量的格式</h4>
+
+
+
+<pre class="wp-block-code"><code># set &lt;Value of the first position variable&gt; &lt;Value of the second location variable&gt; ......</code></pre>
+
+
+
+<h4>1.2 设置 Shell 的执行方式</h4>
+
+
+
+<pre class="wp-block-code"><code># set &lt;parameter&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># set &lt;parameter&gt; +o</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># set &lt;parameter&gt; -o</code></pre>
+
+
+
+<p>（补充：+o 代表打开特殊属性，-o 代表结束特殊属性）</p>
+
+
+
+<h4>内容二： set 的常用参数</h4>
+
+
+
+<p>1) -a 将已修改的变量进行标记，为将其输出至环境变量做准备<br>2) -b 让被中止的后台进程立刻显示退出状态代码<br>3) -d 取消使用杂凑表记忆中使用过的指令<br>4) -e 若退出状态代码不为 0 （正常退出）则立即退出，并显示错误原因<br>5) -f 取消通配符<br>6) -h 默认自动记录函数位置<br>7) -k 让命令的参数为此命令的环境变量<br>8) -l 默认自动记录 for 循环变量名<br>9) -m 监视模式<br>10) -n 测试模式（只读取不执行）<br>11) -p 优先顺序模式<br>12) -P 让文件或目录代替符号链接<br>13) -t 让随后的命令执行后立即退出<br>14) -u 使用未定义的变量时显示错误信息<br>15) -v 显示输入值<br>16) -H shell 使用感叹号 “!” + 号码的方式调用 history 命令中的历史命令<br>17) -x 命令指向前先显示此命令的参数或变量</p>
+
+
+
+<p>（补充：将以上参数前面的 &#8211; 换成 + 则会变成相反的效果）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[步骤] Linux rm 命令的监控</title>
+		<link>https://eternalcenter-2021-12.github.io/rm-monitor/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Sun, 07 Nov 2021 13:29:10 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System File Security (系统文件安全)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<category><![CDATA[System Setting (系统设置)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18208</guid>
+
+					<description><![CDATA[步骤一：将原来的 rm 命令进行备份 步骤二：创建一个记录 rm 命令使用的脚本 步骤三：给记录 rm 命令使用的脚本执行权限 步骤四：下次使用 rm 命令后就可以监控 /var/log/rm_command.log 日志了 （步骤略）]]></description>
+										<content:encoded><![CDATA[
+<h4>步骤一：将原来的 rm 命令进行备份</h4>
+
+
+
+<pre class="wp-block-code"><code># cp /usr/bin/rm  /usr/bin/rm.original</code></pre>
+
+
+
+<h4>步骤二：创建一个记录 rm 命令使用的脚本</h4>
+
+
+
+<pre class="wp-block-code"><code># cat /usr/bin/rm
+#!/bin/bash
+log=/var/log/rm_command.log
+echo "The $$ is calling rm command" &gt;&gt; $log
+echo "The full command is $*" &gt;&gt; $log
+echo
+echo "now use this command to get more information: /bin/ps axwwo user,pid,ppid,%cpu,%mem,vsz,rss,stat,time,cmd" &gt;&gt;$log
+/bin/ps axwwo user,pid,ppid,%cpu,%mem,vsz,rss,stat,time,cmd &gt;&gt;$log
+/usr/bin/rm.original $*
+echo "============================================================" &gt;&gt;$log</code></pre>
+
+
+
+<h4>步骤三：给记录 rm 命令使用的脚本执行权限</h4>
+
+
+
+<pre class="wp-block-code"><code># chmod 755 /usr/bin/rm.original</code></pre>
+
+
+
+<h4>步骤四：下次使用 rm 命令后就可以监控 /var/log/rm_command.log 日志了</h4>
+
+
+
+<p>（步骤略）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[排错] Linux 解决执行命令时报错 “bash: $&#8217;\r&#8217;: command not found”</title>
+		<link>https://eternalcenter-2021-12.github.io/debug-bash-r-command-not-found/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Sat, 06 Nov 2021 11:18:25 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18181</guid>
+
+					<description><![CDATA[报错代码： 分析： Windows 系统文件换行使用的换行符是 \r\nLinux 系统文件换行使用的换行符是 \n在 Windows 编辑的文本换行符可能就是 \r\n要解决这个问题需要将换行符从 \r\n 换成 \n 解决方法： 步骤一：方法一，使用 dos2unix 转换文件换行符1.1 安装 dos2unix 软件 1.2 使用 dos2unix 转换文件换行符 步骤二：方法二，使用 vim 转换文件换行符2.1 使用 vim 进入文件 2.2 转换文件换行符 （注意：是在 vim 的末行模式下执行以上命令） 2.3 保存文件 （注意：是在 vim 的末行模式下执行以上命令）]]></description>
+										<content:encoded><![CDATA[
+<h2>报错代码：</h2>
+
+
+
+<pre class="wp-block-code"><code>bash: $'\r': command not found</code></pre>
+
+
+
+<h2>分析：</h2>
+
+
+
+<p>Windows 系统文件换行使用的换行符是 \r\n<br>Linux 系统文件换行使用的换行符是 \n<br>在 Windows 编辑的文本换行符可能就是 \r\n<br>要解决这个问题需要将换行符从 \r\n 换成 \n</p>
+
+
+
+<h2>解决方法：</h2>
+
+
+
+<h4>步骤一：方法一，使用 dos2unix 转换文件换行符<br>1.1 安装 dos2unix 软件</h4>
+
+
+
+<pre class="wp-block-code"><code># yum -y install dos2unix</code></pre>
+
+
+
+<h4>1.2 使用 dos2unix 转换文件换行符</h4>
+
+
+
+<pre class="wp-block-code"><code># dos2unix &lt;file&gt;</code></pre>
+
+
+
+<h4>步骤二：方法二，使用 vim 转换文件换行符<br>2.1 使用 vim 进入文件</h4>
+
+
+
+<pre class="wp-block-code"><code># vim &lt;file&gt;</code></pre>
+
+
+
+<h4>2.2 转换文件换行符</h4>
+
+
+
+<pre class="wp-block-code"><code>: set ff=unix</code></pre>
+
+
+
+<p>（注意：是在 vim 的末行模式下执行以上命令）</p>
+
+
+
+<h4>2.3 保存文件</h4>
+
+
+
+<pre class="wp-block-code"><code>: wq</code></pre>
+
+
+
+<p>（注意：是在 vim 的末行模式下执行以上命令）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[内容] Linux 进程修正值 （nice 值） 的设置</title>
+		<link>https://eternalcenter-2021-12.github.io/nice/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Thu, 04 Nov 2021 15:38:02 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Performance (系统性能)]]></category>
+		<category><![CDATA[System Process (系统进程)]]></category>
+		<category><![CDATA[System Process & System Performance (系统进程 & 系统性能)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18158</guid>
+
+					<description><![CDATA[内容目录： 内容一：进程优先级和修正值（nice 值）的关系1.1 进程优先级的作用1.2 进程优先级和修正值（nice 值）的关系1.3 修正值（nice 值）的范围 内容二：修正值（nice 值）的设置2.1 设置修正值（nice 值）的格式2.2 设置修正值（nice 值）的案例 内容三：查看进程的修正值 具体的内容： 内容一：进程优先级和修正值（nice 值）的关系1.1 进程优先级的作用 进程的真正优先级越小，则此进程则越能优先被执行 1.2 进程优先级和修正值（nice 值）的关系 进程的真正优先级 = 进程默认优先级 + 修正值（nice 值） 1.3 修正值（nice 值）的范围 从 -20 到 +19 内容二：修正值（nice 值）的设置2.1 设置修正值（nice 值）的格式 或者： 或者： 2.2 设置修正值（nice 值）的案例 或者： 或者： （注意：这里的 -10 不是指负数 10 而是指正数 10） （补充：这里以修正值为 10 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/nice/" class="more-link">Continue reading<span class="screen-reader-text"> "[内容] Linux 进程修正值 （nice 值） 的设置"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h2>内容目录：</h2>
+
+
+
+<h4>内容一：进程优先级和修正值（nice 值）的关系<br>1.1 进程优先级的作用<br>1.2 进程优先级和修正值（nice 值）的关系<br>1.3 修正值（nice 值）的范围</h4>
+
+
+
+<h4>内容二：修正值（nice 值）的设置<br>2.1 设置修正值（nice 值）的格式<br>2.2 设置修正值（nice 值）的案例</h4>
+
+
+
+<h4>内容三：查看进程的修正值</h4>
+
+
+
+<h2>具体的内容：</h2>
+
+
+
+<h4>内容一：进程优先级和修正值（nice 值）的关系<br>1.1 进程优先级的作用</h4>
+
+
+
+<p>进程的真正优先级越小，则此进程则越能优先被执行</p>
+
+
+
+<h4>1.2 进程优先级和修正值（nice 值）的关系</h4>
+
+
+
+<p>进程的真正优先级 = 进程默认优先级 + 修正值（nice 值）</p>
+
+
+
+<h4>1.3 修正值（nice 值）的范围</h4>
+
+
+
+<p>从 -20 到 +19</p>
+
+
+
+<h4>内容二：修正值（nice 值）的设置<br>2.1 设置修正值（nice 值）的格式</h4>
+
+
+
+<pre class="wp-block-code"><code># nice -n &lt;correction value&gt; &lt;command&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># nice --adjustment=&lt;correction value&gt; &lt;command&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># nice -&lt;correction value&gt; &lt;command&gt;</code></pre>
+
+
+
+<h4>2.2 设置修正值（nice 值）的案例</h4>
+
+
+
+<pre class="wp-block-code"><code># nice -n 10 top</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># nice --adjustment=10 top</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># nice -10 top</code></pre>
+
+
+
+<p>（注意：这里的 -10 不是指负数 10 而是指正数 10）</p>
+
+
+
+<p>（补充：这里以修正值为 10 启动 top 命令为例）</p>
+
+
+
+<h4>内容三：查看进程的修正值</h4>
+
+
+
+<pre class="wp-block-code"><code># top</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># ps -ef</code></pre>
+
+
+
+<p>（<br>补充：<br>1) PRI 代表进程默认的优先级<br>2) NI 代表进程的修正值（nice 值）<br>3) 进程的真正优先级 = PRI + NI<br>4) 如果多个进程的真正优先级一样，则 root 用户的进程被优先执行<br>）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令  dmesg （查看开机日志）</title>
+		<link>https://eternalcenter-2021-12.github.io/dmesg/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Fri, 29 Oct 2021 09:17:24 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System General Log (系统普通日志)]]></category>
+		<category><![CDATA[System Log (系统日志)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18117</guid>
+
+					<description><![CDATA[内容一：dmesg 简介 Linux 的 kernel 会把开机日子存储在 ring buffer 和 /var/log/message 中，其中 ring buffer 里的开机日志可以使用 dmesg 来查看，如果开机时的提示信息来不及查看的话，可以通过 dmesg 命令来查看 内容二：dmesg 的选项 1) -c 显示 ring buffer 的日志后清空 ring buffer2) -n 显示日志的层级3) -cn 显示 ring buffer 的日志后清空 ring buffer，同时显示日志的层级4) -s 设置缓冲区的大小，默认为 8196 与 ring buffer 的大小一样 内容三：dmesg 命令的使用案例3.1 查看所有开机日志 3.2 查看所有日志，显示 ring buffer 的日志后清空 ring buffer，同时显示日志的层级 3.3 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/dmesg/" class="more-link">Continue reading<span class="screen-reader-text"> "[命令] Linux 命令  dmesg （查看开机日志）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h4>内容一：dmesg 简介</h4>
+
+
+
+<p>Linux 的 kernel 会把开机日子存储在 ring buffer 和 /var/log/message 中，其中 ring buffer 里的开机日志可以使用 dmesg 来查看，如果开机时的提示信息来不及查看的话，可以通过 dmesg 命令来查看</p>
+
+
+
+<h4>内容二：dmesg 的选项</h4>
+
+
+
+<p>1) -c 显示 ring buffer 的日志后清空 ring buffer<br>2) -n 显示日志的层级<br>3) -cn 显示 ring buffer 的日志后清空 ring buffer，同时显示日志的层级<br>4) -s 设置缓冲区的大小，默认为 8196 与 ring buffer 的大小一样</p>
+
+
+
+<h4>内容三：dmesg 命令的使用案例<br>3.1 查看所有开机日志</h4>
+
+
+
+<pre class="wp-block-code"><code># dmesg | less</code></pre>
+
+
+
+<h4>3.2 查看所有日志，显示 ring buffer 的日志后清空 ring buffer，同时显示日志的层级</h4>
+
+
+
+<pre class="wp-block-code"><code># dmesg -cn</code></pre>
+
+
+
+<h4>3.3 查看所有失败的开机日志</h4>
+
+
+
+<pre class="wp-block-code"><code># dmesg | egrep -i "fail|warn|error"</code></pre>
+
+
+
+<p></p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令 df （打印存储信息）</title>
+		<link>https://eternalcenter-2021-12.github.io/df/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Fri, 29 Oct 2021 07:56:47 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Storage (系统存储)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18115</guid>
+
+					<description><![CDATA[案例一：打印所有存储信息 案例二：以方便人类阅读的方式打印存储信息 案例三：打印存储的 inode 信息 案例三：打印存储的格式]]></description>
+										<content:encoded><![CDATA[
+<h4>案例一：打印所有存储信息</h4>
+
+
+
+<pre class="wp-block-code"><code># df -a</code></pre>
+
+
+
+<h4>案例二：以方便人类阅读的方式打印存储信息</h4>
+
+
+
+<pre class="wp-block-code"><code># df -h</code></pre>
+
+
+
+<h4> 案例三：打印存储的 inode 信息</h4>
+
+
+
+<pre class="wp-block-code"><code># df -i</code></pre>
+
+
+
+<h4> 案例三：打印存储的格式</h4>
+
+
+
+<pre class="wp-block-code"><code># df -T</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[排错] Linux 解决 /dev/null 文件缺失</title>
+		<link>https://eternalcenter-2021-12.github.io/debug-linux-null-restore/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Fri, 29 Oct 2021 07:44:35 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18113</guid>
+
+					<description><![CDATA[错误代码： 解决方法：]]></description>
+										<content:encoded><![CDATA[
+<h2>错误代码：</h2>
+
+
+
+<pre class="wp-block-code"><code>-bash: /dev/null: Permission denied</code></pre>
+
+
+
+<h2>解决方法：</h2>
+
+
+
+<pre class="wp-block-code"><code># rm -f /dev/null;mknod /dev/null c 1 3;chmod 666 /dev/null</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[工具] Shell 批量修改多个远程服务器某一个用户的密码 （精致版）</title>
+		<link>https://eternalcenter-2021-12.github.io/shell-password-change-refined-version/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Sun, 10 Oct 2021 13:08:50 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[Languages (语言)]]></category>
+		<category><![CDATA[Shell]]></category>
+		<category><![CDATA[Shell Deployment (部署)]]></category>
+		<category><![CDATA[Shell Others (其他)]]></category>
+		<category><![CDATA[Shell Tool (工具)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Login Security (系统登录安全)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<category><![CDATA[System User (系统用户)]]></category>
+		<category><![CDATA[System User & System Privilege (系统用户 & 系统权限)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18100</guid>
+
+					<description><![CDATA[介绍： 作者：朱明宇名称：批量修改多个远程服务器某一个用户的密码作用：批量修改多个远程服务器某一个用户的密码 使用方法：1. 将此脚本和清单 $list 文件放在同一目录下2. 清单 $list 里每服务器名占用一行3. 给脚本分割线里的变量赋值4. 给此脚本添加执行权限5. 执行此脚本 脚本分割线里的变量：1. list=”list.txt” #指定清单的目录和名称2. user=eternalcenter #指定要修改密码的用户3. password=eternalcenter #指定要修改的密码 注意：此脚本执行前必须要先保证执行本脚本的用户能无密码 ssh 远程这些远程服务器，并且可以通过 sudo 获得 su 的 root 权限 脚本：]]></description>
+										<content:encoded><![CDATA[
+<h2>介绍：</h2>
+
+
+
+<p>作者：朱明宇<br>名称：批量修改多个远程服务器某一个用户的密码<br>作用：批量修改多个远程服务器某一个用户的密码</p>
+
+
+
+<p>使用方法：<br>1. 将此脚本和清单 $list 文件放在同一目录下<br>2. 清单 $list 里每服务器名占用一行<br>3. 给脚本分割线里的变量赋值<br>4. 给此脚本添加执行权限<br>5. 执行此脚本</p>
+
+
+
+<p>脚本分割线里的变量：<br>1. list=”list.txt” #指定清单的目录和名称<br>2. user=eternalcenter #指定要修改密码的用户<br>3. password=eternalcenter #指定要修改的密码</p>
+
+
+
+<p>注意：<br>此脚本执行前必须要先保证执行本脚本的用户能无密码 ssh 远程这些远程服务器，并且可以通过 sudo 获得 su 的 root 权限</p>
+
+
+
+<h2>脚本：</h2>
+
+
+
+<pre class="wp-block-code"><code>#!/bin/bash
+
+####################### Separator ########################
+
+list="list.txt"
+user=eternalcenter
+password=eternalcenter
+
+####################### Separator ########################
+
+num=1
+
+cat $list
+for i in `cat $list`
+do
+        echo $num
+        echo $i
+
+	ssh -t $i "type lsb_release" &amp;> /dev/null
+        if &#91; $? -ne 0 ]; then
+              distribution=`ssh -t $i "cat /etc/*release | grep '^NAME'"`
+	      if &#91; $? -ne 0 ];then
+		      distribution=`ssh -t $i "cat /etc/*release"`
+	      fi
+        else
+              distribution=`ssh -t $i "lsb_release -i | grep 'ID' | grep -v 'n/a'"`
+        fi;
+
+        echo $distribution
+
+	case $distribution in
+		*"RedHat"* | *"Red Hat"*)
+		ssh -t $i "sudo -u root su - root -c \"echo $password | passwd --stdin $user\""
+		if &#91; $? -eq 0 ];then
+			echo -e "\033&#91;32m$i is success\033&#91;0m"
+		else
+			echo -e "\033&#91;31m$i is fail\033&#91;0m"
+		fi
+		;;
+
+		*"CentOS"*)
+		ssh -t $i "sudo -u root su - root -c \"echo $password | passwd --stdin $user\""
+		if &#91; $? -eq 0 ];then
+			echo -e "\033&#91;32m$i is success\033&#91;0m"
+		else
+			echo -e "\033&#91;31m$i is fail\033&#91;0m"
+		fi
+		;;
+
+		*"SUSE"* | *"SLES"*)
+		ssh -t $i "sudo -u root su - root -c \"echo $user:$password | chpasswd\""
+		if &#91; $? -eq 0 ];then
+			echo -e "\033&#91;32m$i is success\033&#91;0m"
+		else
+			echo -e "\033&#91;31m$i is fail\033&#91;0m"
+		fi
+		;;
+               
+		*"openSUSE"*)
+		ssh -t $i "sudo -u root su - root -c \"echo $user:$password | chpasswd\""
+		if &#91; $? -eq 0 ];then
+			echo -e "\033&#91;32m$i is success\033&#91;0m"
+		else
+			echo -e "\033&#91;31m$i is fail\033&#91;0m"
+		fi
+		;;
+
+		*)
+                echo -e "\033&#91;31m$i is fail \033&#91;0m" 
+		;;
+        esac
+
+        let num++
+
+        echo
+done</code></pre>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令 sort（对数字或字母进行排序）</title>
+		<link>https://eternalcenter-2021-12.github.io/sort/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Thu, 07 Oct 2021 13:56:39 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18091</guid>
+
+					<description><![CDATA[内容目录： 内容一：sort 命令的选项 内容二：sort 排序的案例2.1 案例一：检查是否已经排序2.2 案例二：sort 排序一列数字2.3 案例三：sort 排序一列字母2.4 案例四：sort 以相反的顺序进行排序2.5 案例五：sort 以 2 列中的第 1 列进行排序2.6 案例六：sort 以 2 列中的第 2 列进行排序2.7 案例七：sort 对 IP 地址进行排序2.8 案例八：sort 以 IP 地址的第三组数字进行排序 具体的内容： 内容一：sort 命令的选项 1) -b 排序时忽略每行前面的空格2) -c 检查是否已排序3) -f 排序时忽略大小写字母4) -n 按照数值到大小进行排序5) -o 将排序结果导入到指定文件6) -r 以相反的顺序进行排序7) -t 指定排序的分隔符8) -k 以指定的列进行排序 内容二：sort 排序的案例2.1 案例一：检查是否已经排序 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/sort/" class="more-link">Continue reading<span class="screen-reader-text"> "[命令] Linux 命令 sort（对数字或字母进行排序）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h2>内容目录：</h2>
+
+
+
+<h4>内容一：sort 命令的选项</h4>
+
+
+
+<h4>内容二：sort 排序的案例<br>2.1 案例一：检查是否已经排序<br>2.2 案例二：sort 排序一列数字<br>2.3 案例三：sort 排序一列字母<br>2.4 案例四：sort 以相反的顺序进行排序<br>2.5 案例五：sort 以 2 列中的第 1 列进行排序<br>2.6 案例六：sort 以 2 列中的第 2 列进行排序<br>2.7 案例七：sort 对 IP 地址进行排序<br>2.8 案例八：sort 以 IP 地址的第三组数字进行排序</h4>
+
+
+
+<h2>具体的内容：</h2>
+
+
+
+<h4>内容一：sort 命令的选项</h4>
+
+
+
+<p>1) -b 排序时忽略每行前面的空格<br>2) -c 检查是否已排序<br>3) -f 排序时忽略大小写字母<br>4) -n 按照数值到大小进行排序<br>5) -o 将排序结果导入到指定文件<br>6) -r 以相反的顺序进行排序<br>7) -t 指定排序的分隔符<br>8) -k 以指定的列进行排序</p>
+
+
+
+<h4>内容二：sort 排序的案例<br>2.1 案例一：检查是否已经排序</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt
+3
+5
+4
+2
+1
+
+# sort -c test.txt 
+sort: test.txt:3: disorder: 4</code></pre>
+
+
+
+<p>（补充：这里以检查 test.txt 文件里的排列为例）</p>
+
+
+
+<h4>2.2 案例二：sort 排序一列数字</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt
+3
+5
+4
+2
+20
+1
+
+# sort -n test.txt 
+1
+2
+3
+4
+5
+20</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+
+
+
+<h4>2.3 案例三：sort 排序一列字母</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+c
+e
+d
+b
+a
+
+# sort test.txt 
+a
+b
+c
+d
+e</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+
+
+
+<h4>2.4 案例四：sort 以相反的顺序进行排序</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+c
+e
+d
+b
+a
+
+# sort -r test.txt 
+e
+d
+c
+b
+a</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+
+
+
+<h4>2.5 案例五：sort 以 2 列中的第 1 列进行排序</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+3 d
+5 c
+4 a
+2 e
+1 b
+
+# sort test.txt 
+1 b
+2 e
+3 d
+4 a
+5 c</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+
+
+
+<h4>2.6 案例六：sort 以 2 列中的第 2 列进行排序</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+3 d
+5 c
+4 a
+2 e
+1 b
+
+# sort -k2 test.txt 
+4 a
+1 b
+5 c
+3 d
+2 e</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+
+
+
+<h4>2.7 案例七：sort 对 IP 地址进行排序</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+10.0.200.10
+172.16.50.10
+192.168.100.1
+192.168.100.10
+172.16.50.1
+10.0.200.1
+
+# sort test.txt
+10.0.200.1
+10.0.200.10
+172.16.50.1
+172.16.50.10
+192.168.100.1
+192.168.100.10</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+
+
+
+<h4>2.8 案例八：sort 以 IP 地址的第三组数字进行排序</h4>
+
+
+
+<pre class="wp-block-code"><code># cat test.txt 
+10.0.200.10
+172.16.50.10
+192.168.100.1
+192.168.100.10
+172.16.50.1
+10.0.200.1
+
+# sort -t'.' -k3n test.txt
+172.16.50.1
+172.16.50.10
+192.168.100.1
+192.168.100.10
+10.0.200.1
+10.0.200.10</code></pre>
+
+
+
+<p>（补充：这里以排列 test.txt 文件里的列为例）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[内容] Linux 输出信息的重定向</title>
+		<link>https://eternalcenter-2021-12.github.io/redirect/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Tue, 05 Oct 2021 14:18:59 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=18085</guid>
+
+					<description><![CDATA[内容目录： 内容一：以清空原文的方式进行输出信息的重定向1.1 以清空原文的方式将所有的输出信息重定向到某一个文件1.2 以清空原文的方式只将正确的输出信息重定向到某一个文件1.3 以清空原文的方式只将错误的输出信息重定向到某一个文件 内容二：以在原文后面追加的方式进行输出信息的重定向2.1 以在原文后面追加的方式将所有的输出信息重定向到某一个文件2.2 以在原文后面追加的方式只将正确的输出信息重定向到某一个文件2.3 以在原文后面追加的方式只将错误的输出信息重定向到某一个文件 内容三：通过重定向转换输出信息的正误3.1 将错误的输出信息重定向成正确的输出信息3.2 将正确的输出信息重定向成错误的输出信息 内容四：将输出信息重定向到黑洞 具体的内容： 内容一：以清空原文的方式进行输出信息的重定向1.1 以清空原文的方式将所有的输出信息重定向到某一个文件 或者： 1.2 以清空原文的方式只将正确的输出信息重定向到某一个文件 或者： 1.3 以清空原文的方式只将错误的输出信息重定向到某一个文件 内容二：以在原文后面追加的方式进行输出信息的重定向2.1 以在原文后面追加的方式将所有的输出信息重定向到某一个文件 或者： 2.2 以在原文后面追加的方式只将正确的输出信息重定向到某一个文件 或者： 2.3 以在原文后面追加的方式只将错误的输出信息重定向到某一个文件 内容三：通过重定向转换输出信息的正误3.1 将错误的输出信息重定向成正确的输出信息 或者： 3.2 将正确的输出信息重定向成错误的输出信息 或者： 内容四：将输出信息重定向到黑洞 或者： 或者： 或者： 或者： 或者： 或者： 或者： 或者： 或者： 或者： 或者： （补充：通过此种方法输出信息就既不会显示出来也不会被重定向到一个文件里）]]></description>
+										<content:encoded><![CDATA[
+<h2>内容目录：</h2>
+
+
+
+<h4>内容一：以清空原文的方式进行输出信息的重定向<br>1.1 以清空原文的方式将所有的输出信息重定向到某一个文件<br>1.2 以清空原文的方式只将正确的输出信息重定向到某一个文件<br>1.3 以清空原文的方式只将错误的输出信息重定向到某一个文件</h4>
+
+
+
+<h4>内容二：以在原文后面追加的方式进行输出信息的重定向<br>2.1 以在原文后面追加的方式将所有的输出信息重定向到某一个文件<br>2.2 以在原文后面追加的方式只将正确的输出信息重定向到某一个文件<br>2.3 以在原文后面追加的方式只将错误的输出信息重定向到某一个文件</h4>
+
+
+
+<h4>内容三：通过重定向转换输出信息的正误<br>3.1 将错误的输出信息重定向成正确的输出信息<br>3.2 将正确的输出信息重定向成错误的输出信息</h4>
+
+
+
+<h4>内容四：将输出信息重定向到黑洞</h4>
+
+
+
+<h2>具体的内容：</h2>
+
+
+
+<h4>内容一：以清空原文的方式进行输出信息的重定向<br>1.1 以清空原文的方式将所有的输出信息重定向到某一个文件</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &amp;&gt; &lt;file&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &gt;&amp; &lt;file&gt;</code></pre>
+
+
+
+<h4>1.2 以清空原文的方式只将正确的输出信息重定向到某一个文件</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt; &lt;file&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &gt; &lt;file&gt;</code></pre>
+
+
+
+<h4>1.3 以清空原文的方式只将错误的输出信息重定向到某一个文件</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt; &lt;file&gt;</code></pre>
+
+
+
+<h4>内容二：以在原文后面追加的方式进行输出信息的重定向<br>2.1 以在原文后面追加的方式将所有的输出信息重定向到某一个文件</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &amp;&gt;&gt; &lt;file&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &gt;&gt;&amp; &lt;file&gt;</code></pre>
+
+
+
+<h4>2.2 以在原文后面追加的方式只将正确的输出信息重定向到某一个文件</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt;&gt; &lt;file&gt;</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &gt;&gt; &lt;file&gt;</code></pre>
+
+
+
+<h4>2.3 以在原文后面追加的方式只将错误的输出信息重定向到某一个文件</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt;&gt; &lt;file&gt;</code></pre>
+
+
+
+<h4>内容三：通过重定向转换输出信息的正误<br>3.1 将错误的输出信息重定向成正确的输出信息</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&amp;&gt;1</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt;&amp;1</code></pre>
+
+
+
+<h4>3.2 将正确的输出信息重定向成错误的输出信息</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&amp;&gt;2</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt;&amp;2</code></pre>
+
+
+
+<h4>内容四：将输出信息重定向到黑洞</h4>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &amp;&gt; /dev/null</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &amp;&gt;&gt; /dev/null</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &gt;&amp; /dev/null</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; &gt;&gt;&amp; /dev/null</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt; /dev/null 2&gt;&amp;1</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt;&gt; /dev/null 2&gt;&amp;1</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt; /dev/null 2&gt;&gt;&amp;1</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 1&gt;&gt; /dev/null 2&gt;&gt;&amp;1</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt; /dev/null 1&gt;&amp;2</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt;&gt; /dev/null 1&gt;&amp;2</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt; /dev/null 1&gt;&gt;&amp;2</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;command&gt; 2&gt;&gt; /dev/null 1&gt;&gt;&amp;2</code></pre>
+
+
+
+<p>（补充：通过此种方法输出信息就既不会显示出来也不会被重定向到一个文件里）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[命令] Linux 命令 seq （打印数字序列）</title>
+		<link>https://eternalcenter-2021-12.github.io/%e5%91%bd%e4%bb%a4-linux-%e5%91%bd%e4%bb%a4-seq-%ef%bc%88%e6%89%93%e5%8d%b0%e6%95%b0%e5%ad%97%e5%ba%8f%e5%88%97%ef%bc%89/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Mon, 04 Oct 2021 09:41:15 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System File (系统文件)]]></category>
+		<category><![CDATA[System Operation (系统操作)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Storage & System Directory & System File (系统存储 & 系统目录 & 系统文件)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=17786</guid>
+
+					<description><![CDATA[内容目录： 内容一：seq 命令格式 内容二：seq 命令的选项 内容三：seq 命令的使用案例3.1 案例一：seq 打印普通的数字序列3.1.1 打印从 1 到某个数字到数字序列3.1.2 打印从某个数字开始到某个数字结束的数字序列3.1.3 打印从某个数字开始到某个数字结束有数值差距的数字序列3.2 案例二：seq 打印指定前缀的数字序列3.2.1 打印将某个字符串作为前缀的数字序列3.2.2 打印将某个字符串和几个空格作为前缀的数字序列3.2.3 打印将某个字符串和几个字符作为前缀的数字序列3.3 案例三：seq 打印指定间隔符的数字序列3.3.1 打印没有间隔符的数字序列3.3.2 打印间隔符是空格的数字序列3.3.3 打印间隔符是某一个字符的数字序列3.4 案例四：seq 打印指定宽度的数字序列3.5 案例五：seq 使用变量打印数字序列3.6 案例六：将 seq 打印的数字序列导入到一个文件里 具体的内容： 内容一：seq 命令格式 内容二：seq 命令的选项 1) -f 指定序列的格式2) -s 指定序列的间隔符3) -w 使序列宽度相同4) &#8211;equal-width 使序列宽度相同 内容三：seq 命令的使用案例3.1 案例一：seq 打印普通的数字序列3.1.1 打印从 1 到某个数字到数字序列 （补充：这里以打印 1 到 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/%e5%91%bd%e4%bb%a4-linux-%e5%91%bd%e4%bb%a4-seq-%ef%bc%88%e6%89%93%e5%8d%b0%e6%95%b0%e5%ad%97%e5%ba%8f%e5%88%97%ef%bc%89/" class="more-link">Continue reading<span class="screen-reader-text"> "[命令] Linux 命令 seq （打印数字序列）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h2>内容目录：</h2>
+
+
+
+<h4>内容一：seq 命令格式</h4>
+
+
+
+<h4>内容二：seq 命令的选项</h4>
+
+
+
+<h4>内容三：seq 命令的使用案例<br>3.1 案例一：seq 打印普通的数字序列<br>3.1.1 打印从 1 到某个数字到数字序列<br>3.1.2 打印从某个数字开始到某个数字结束的数字序列<br>3.1.3 打印从某个数字开始到某个数字结束有数值差距的数字序列<br>3.2 案例二：seq 打印指定前缀的数字序列<br>3.2.1 打印将某个字符串作为前缀的数字序列<br>3.2.2 打印将某个字符串和几个空格作为前缀的数字序列<br>3.2.3 打印将某个字符串和几个字符作为前缀的数字序列<br>3.3 案例三：seq 打印指定间隔符的数字序列<br>3.3.1 打印没有间隔符的数字序列<br>3.3.2 打印间隔符是空格的数字序列<br>3.3.3 打印间隔符是某一个字符的数字序列<br>3.4 案例四：seq 打印指定宽度的数字序列<br>3.5 案例五：seq 使用变量打印数字序列<br>3.6 案例六：将 seq 打印的数字序列导入到一个文件里</h4>
+
+
+
+<h2>具体的内容：</h2>
+
+
+
+<h4>内容一：seq 命令格式</h4>
+
+
+
+<pre class="wp-block-code"><code>1) seq &lt;option> &lt;first number>
+2) seq &lt;option> &lt;first number> &lt;last number>
+3) seq &lt;option> &lt;first number> &lt;increment> &lt;last number></code></pre>
+
+
+
+<h4>内容二：seq 命令的选项</h4>
+
+
+
+<p>1) -f 指定序列的格式<br>2) -s 指定序列的间隔符<br>3) -w 使序列宽度相同<br>4) &#8211;equal-width 使序列宽度相同</p>
+
+
+
+<h4>内容三：seq 命令的使用案例<br>3.1 案例一：seq 打印普通的数字序列<br>3.1.1 打印从 1 到某个数字到数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq 5
+1
+2
+3
+4
+5</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 的数字序列为例）</p>
+
+
+
+<h4>3.1.2 打印从某个数字开始到某个数字结束的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq 3 7
+3
+4
+5
+6
+7</code></pre>
+
+
+
+<p>（补充：这里以打印 3 到 7 的数字序列为例）</p>
+
+
+
+<h4>3.1.3 打印从某个数字开始到某个数字结束有数值差距的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq 4 2 8
+4
+6
+8</code></pre>
+
+
+
+<p>（补充：这里以打印 4 到 8 数值差距为 2 的数字序列为例）</p>
+
+
+
+<h4>3.2 案例二：seq 打印指定前缀的数字序列<br>3.2.1 打印将某个字符串作为前缀的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -f "num%g" 5
+num1
+num2
+num3
+num4
+num5</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 并且将 num 作为前缀的数字序列为例）</p>
+
+
+
+<h4>3.2.2 打印将某个字符串和几个空格作为前缀的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -f "num%3g" 5
+num  1
+num  2
+num  3
+num  4
+num  5</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 并且将 num 和 2 个空格作为前缀的数字序列为例）</p>
+
+
+
+<h4>3.2.3 打印将某个字符串和几个字符作为前缀的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -f "num%03g" 5
+num001
+num002
+num003
+num004
+num005</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 并且将 num 和 2 个 0 作为前缀的数字序列为例）</p>
+
+
+
+<h4>3.3 案例三：seq 打印指定间隔符的数字序列<br>3.3.1 打印没有间隔符的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -s '' 5
+12345</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 并且没有间隔符的数字序列为例）</p>
+
+
+
+<h4>3.3.2 打印间隔符是空格的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -s ' ' 5
+1 2 3 4 5</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 并且以空格作为间隔的数字序列为例）</p>
+
+
+
+<h4>3.3.3 打印间隔符是某一个字符的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -s '#' 5
+1#2#3#4#5</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 并且以 # 作为间隔的数字序列为例）</p>
+
+
+
+<h4>3.4 案例四：seq 打印指定宽度的数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># seq -w 1 10
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># seq --equal-width 1 10
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10</code></pre>
+
+
+
+<h4>3.5 案例五：seq 使用变量打印数字序列</h4>
+
+
+
+<pre class="wp-block-code"><code># a=5
+# seq $a
+1
+2
+3
+4
+5</code></pre>
+
+
+
+<p>（补充：这里以将变量 a 的值设置为 5 ，并且打印 1 到变量 a 的值的数字变量为例）</p>
+
+
+
+<h4>3.6 案例六：将 seq 打印的数字序列导入到一个文件里</h4>
+
+
+
+<pre class="wp-block-code"><code># seq 1 5 &gt; test.txt
+# cat test.txt
+1
+2
+3
+4
+5</code></pre>
+
+
+
+<p>或者：</p>
+
+
+
+<pre class="wp-block-code"><code># seq 1 5 | xargs -I{} echo {} &gt; test.txt
+
+# cat test.txt
+1
+2
+3
+4
+5</code></pre>
+
+
+
+<p>（补充：这里以打印 1 到 5 的数字序列并导入到 test.txt 文件为例）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[步骤] 系统升级 （从 openSUSE Leap 15.2 升级到 openSUSE Leap 15.3）</title>
+		<link>https://eternalcenter-2021-12.github.io/upgrade-opensuse-leap-15-3/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Sun, 03 Oct 2021 14:46:19 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Computer & System Hardware & System Installation & System Upgradation (系统电脑 & 系统硬件 & 系统安装 & 系统升级)]]></category>
+		<category><![CDATA[System Upgradation (系统升级)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=17771</guid>
+
+					<description><![CDATA[步骤目录： 步骤一：查看现在的系统版本 步骤二：准备升级2.1 确认已使用的软件库2.2 刷新已使用的软件库2.3 升级到 openSUSE Leap 15.22.4 用 releasever 变量替换所有版本号 步骤三：升级系统3.1 将版本号设置为 15.3 并刷新3.2 提前下载并安装 openSUSE Leap 15.3 所需的软件包3.3 升级系统3.4 重启系统 步骤四：后续检查4.1 查看升级后的系统版本4.2 查看升级后已使用的软件库 具体的操作步骤： 步骤一：查看现在的系统版本 （注意：确保显示的系统版本是 openSUSE Leap 15.2） 步骤二：准备升级2.1 确认已使用的软件库 （补充：确保以上库已处于 Enabled 状态） 2.2 刷新已使用的软件库 （注意：确保刷新成功，否则请检查网络） 2.3 升级到 openSUSE Leap 15.2 2.4 用 releasever 变量替换所有版本号 步骤三：升级系统3.1 将版本号设置为 15.3 并刷新 3.2 提前下载并安装 &#8230; <p class="link-more"><a href="https://eternalcenter-2021-12.github.io/upgrade-opensuse-leap-15-3/" class="more-link">Continue reading<span class="screen-reader-text"> "[步骤] 系统升级 （从 openSUSE Leap 15.2 升级到 openSUSE Leap 15.3）"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<h2>步骤目录：</h2>
+
+
+
+<h4>步骤一：查看现在的系统版本</h4>
+
+
+
+<h4>步骤二：准备升级<br>2.1 确认已使用的软件库<br>2.2 刷新已使用的软件库<br>2.3 升级到 openSUSE Leap 15.2<br>2.4 用 releasever 变量替换所有版本号</h4>
+
+
+
+<h4>步骤三：升级系统<br>3.1 将版本号设置为 15.3 并刷新<br>3.2 提前下载并安装 openSUSE Leap 15.3 所需的软件包<br>3.3 升级系统<br>3.4 重启系统</h4>
+
+
+
+<h4>步骤四：后续检查<br>4.1 查看升级后的系统版本<br>4.2 查看升级后已使用的软件库</h4>
+
+
+
+<h2>具体的操作步骤：</h2>
+
+
+
+<h4>步骤一：查看现在的系统版本</h4>
+
+
+
+<pre class="wp-block-code"><code># cat /etc/*release*
+NAME="openSUSE Leap"
+VERSION="15.2"
+ID="opensuse-leap"
+ID_LIKE="suse opensuse"
+VERSION_ID="15.2"
+PRETTY_NAME="openSUSE Leap 15.2"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:opensuse:leap:15.2"
+BUG_REPORT_URL="https://bugs.opensuse.org/"
+HOME_URL="https://www.opensuse.org/"</code></pre>
+
+
+
+<p>（注意：确保显示的系统版本是 openSUSE Leap 15.2）</p>
+
+
+
+<h4>步骤二：准备升级<br>2.1 确认已使用的软件库</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper ls -d
+#  | Alias                     | Name                               | Enabled | GPG Check | Refresh | Priority | Type   | URI
+---+---------------------------+------------------------------------+---------+-----------+---------+----------+--------+---------------------------------------------------------------------------------------------
+1  | repo-non-oss              | Non-OSS Repository                 | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/distribution/leap/15.2/repo/non-oss/
+2  | repo-oss                  | Main Repository                    | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/distribution/leap/15.2/repo/oss/
+3 | repo-update               | Main Update Repository             | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/update/leap/15.2/oss/
+4 | repo-update-non-oss       | Update Repository (Non-Oss)        | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/update/leap/15.2/non-oss/</code></pre>
+
+
+
+<p>（补充：确保以上库已处于 Enabled 状态）</p>
+
+
+
+<h4>2.2 刷新已使用的软件库</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper ref</code></pre>
+
+
+
+<p>（注意：确保刷新成功，否则请检查网络）</p>
+
+
+
+<h4>2.3 升级到 openSUSE Leap 15.2</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper -n update</code></pre>
+
+
+
+<h4>2.4 用 releasever 变量替换所有版本号</h4>
+
+
+
+<pre class="wp-block-code"><code># sed -i 's/15.2/${releasever}/g' /etc/zypp/repos.d/*.repo</code></pre>
+
+
+
+<h4>步骤三：升级系统<br>3.1 将版本号设置为 15.3 并刷新</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper --releasever=15.3 refresh</code></pre>
+
+
+
+<h4>3.2 提前下载并安装 openSUSE Leap 15.3 所需的软件包</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper --releasever=15.3 dup --download-in-advance</code></pre>
+
+
+
+<h4>3.3 升级系统</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper --releasever=15.3 dup</code></pre>
+
+
+
+<h4>3.4 重启系统</h4>
+
+
+
+<pre class="wp-block-code"><code># reboot</code></pre>
+
+
+
+<h4>步骤四：后续检查<br>4.1 查看升级后的系统版本</h4>
+
+
+
+<pre class="wp-block-code"><code># cat /etc/*release*
+NAME="openSUSE Leap"
+VERSION="15.3"
+ID="opensuse-leap"
+ID_LIKE="suse opensuse"
+VERSION_ID="15.3"
+PRETTY_NAME="openSUSE Leap 15.3"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:opensuse:leap:15.3"
+BUG_REPORT_URL="https://bugs.opensuse.org/"
+HOME_URL="https://www.opensuse.org/"</code></pre>
+
+
+
+<h4>4.2 查看升级后已使用的软件库</h4>
+
+
+
+<pre class="wp-block-code"><code># zypper ls -d
+#  | Alias                     | Name                                                         | Enabled | GPG Check | Refresh | Priority | Type   | URI
+---+---------------------------+------------------------------------+---------+-----------+---------+----------+--------+---------------------------------------------------------------------------------------------
+1  | repo-non-oss              | Non-OSS Repository                                           | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/distribution/leap/15.3/repo/non-oss/
+2  | repo-oss                  | Main Repository                                              | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/distribution/leap/15.3/repo/oss/
+3 | repo-update                | Main Update Repository                                       | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/update/leap/15.3/oss/
+4 | repo-update-non-oss        | Update Repository (Non-Oss)                                  | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/update/leap/15.3/non-oss/
+4  | repo-backports-update     | Update repository of openSUSE Backports                      | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/update/leap/15.3/backports/
+5  | repo-sle-update           | Update repository with updates from SUSE Linux Enterprise 15 | Yes     | (r ) Yes  | Yes     |   99     | rpm-md | http://download.opensuse.org/update/leap/15.3/sle/</code></pre>
+
+
+
+<p>（注意：升级到 openSUSE Leap 15.3 系统后，自动新增加了 repo-backports-update 软件库和 repo-sle-update 软件库）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>[步骤] openSUSE&#038;SUSE 通过 zypper 升级内核保留旧内核数量的设置</title>
+		<link>https://eternalcenter-2021-12.github.io/opensusesuse-zypper-kernel-reserve/</link>
+		
+		<dc:creator><![CDATA[Mingyu Zhu]]></dc:creator>
+		<pubDate>Mon, 27 Sep 2021 14:06:47 +0000</pubDate>
+				<category><![CDATA[Chinese (中文)]]></category>
+		<category><![CDATA[System (系统)]]></category>
+		<category><![CDATA[System Computer & System Hardware & System Installation & System Upgradation (系统电脑 & 系统硬件 & 系统安装 & 系统升级)]]></category>
+		<category><![CDATA[System Network & System Security & System Log (系统网络 & 系统安全 & 系统日志)]]></category>
+		<category><![CDATA[System Operation & System Setting & System Software (系统操作 & 系统设置 & 系统软件)]]></category>
+		<category><![CDATA[System Patch (系统补丁)]]></category>
+		<category><![CDATA[System Security (系统安全)]]></category>
+		<category><![CDATA[System Setting (系统设置)]]></category>
+		<category><![CDATA[System Upgradation (系统升级)]]></category>
+		<guid isPermaLink="false">https://eternalcenter-2021-12.github.io/?p=17666</guid>
+
+					<description><![CDATA[将以下内容： 修改为： （补充：这里以使用 zypper 升级内核时保留 3 个 旧内核为例）]]></description>
+										<content:encoded><![CDATA[
+<pre class="wp-block-code"><code># vim /etc/zypp/zypp.conf</code></pre>
+
+
+
+<p>将以下内容：</p>
+
+
+
+<pre class="wp-block-code"><code>......
+multiversion.kernels = latest,latest-1,running
+......</code></pre>
+
+
+
+<p>修改为：</p>
+
+
+
+<pre class="wp-block-code"><code>......
+multiversion.kernels = latest,latest-3,running
+......</code></pre>
+
+
+
+<p>（补充：这里以使用 zypper 升级内核时保留 3 个 旧内核为例）</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
